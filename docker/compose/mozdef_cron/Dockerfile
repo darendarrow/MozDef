@@ -3,7 +3,7 @@ FROM mozdef/mozdef_base
 LABEL maintainer="mozdef@mozilla.com"
 
 RUN \
-  yum makecache fast && \
+  yum makecache && \
   yum install -y cronie && \
   yum clean all && \
   rm -rf /var/cache/yum

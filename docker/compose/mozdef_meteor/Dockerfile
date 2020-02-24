@@ -3,7 +3,7 @@ FROM centos:8-2020-02-23
 LABEL maintainer="mozdef@mozilla.com"
 
 ENV NODE_VERSION 12.16.1
-ENV METEOR_VERSION 1.9.2
+ENV METEOR_VERSION 1.8
 
 ENV MONGO_URL=mongodb://mongodb:3002/meteor
 ENV ROOT_URL=http://localhost
