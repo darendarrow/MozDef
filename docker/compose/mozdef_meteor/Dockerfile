@@ -17,7 +17,7 @@ ARG METEOR_BUILD='YES'
 RUN \
   useradd --create-home --shell /bin/bash --home-dir /opt/mozdef mozdef && \
   cd /opt/mozdef && \
-  yum makecache fast && \
+  yum makecache && \
   yum install -y which && \
   curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - && \
   rpm --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL && \

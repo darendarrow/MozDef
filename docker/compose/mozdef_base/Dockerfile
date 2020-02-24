@@ -4,11 +4,12 @@ ENV TZ UTC
 
 RUN \
   rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8 && \
-  yum makecache fast && \
+  yum makecache && \
   yum install -y epel-release && \
   yum install -y \
      glibc-devel \
      gcc \
+#     nss-3.44.0-9.el8_1.i686 \
      libstdc++ \
      zlib-devel \
      libcurl-devel \
@@ -16,9 +17,9 @@ RUN \
      openssl-devel \
      git \
      make \
-     python36 \
+     python3 \
      python36-devel \
-     python36-pip && \
+     python3-pip && \
   yum clean all && \
   rm -rf /var/cache/yum && \
   useradd --create-home --shell /bin/bash --home-dir /opt/mozdef mozdef && \
@@ -27,7 +28,7 @@ RUN \
 
 # Force pycurl to understand we prefer nss backend
 # Pycurl with ssl support is required by kombu in order to use SQS
-ENV PYCURL_SSL_LIBRARY=nss
+#ENV PYCURL_SSL_LIBRARY=nss
 
 # Create python virtual environment and install dependencies
 COPY --chown=mozdef:mozdef requirements.txt /opt/mozdef/envs/mozdef/requirements.txt
