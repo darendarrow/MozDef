@@ -1,8 +1,7 @@
-FROM centos:7
+FROM centos:8-2020-02-23
 
-LABEL maintainer="mozdef@mozilla.com"
 
-ENV KIBANA_VERSION 6.8.0
+ENV KIBANA_VERSION 7.6.0
 
 RUN \
   mkdir /kibana && \

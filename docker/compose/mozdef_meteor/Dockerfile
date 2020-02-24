@@ -1,9 +1,9 @@
-FROM centos:7
+FROM centos:8-2020-02-23
 
 LABEL maintainer="mozdef@mozilla.com"
 
-ENV NODE_VERSION 8.11.4
-ENV METEOR_VERSION 1.8
+ENV NODE_VERSION 12.16.1
+ENV METEOR_VERSION 1.9.2
 
 ENV MONGO_URL=mongodb://mongodb:3002/meteor
 ENV ROOT_URL=http://localhost
@@ -17,14 +17,10 @@ ARG METEOR_BUILD='YES'
 RUN \
   useradd --create-home --shell /bin/bash --home-dir /opt/mozdef mozdef && \
   cd /opt/mozdef && \
-  gpg="gpg --no-default-keyring --secret-keyring /dev/null --keyring /dev/null --no-option --keyid-format 0xlong" && \
-  rpmkeys --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
-  rpm -qi gpg-pubkey-f4a80eb5 | $gpg | grep 0x24C6A8A7F4A80EB5 && \
   yum makecache fast && \
   yum install -y which && \
-  curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - && \
-  rpmkeys --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL && \
-  rpm -qi gpg-pubkey-34fa74dd | $gpg | grep 0x5DDBE8D434FA74DD && \
+  curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - && \
+  rpm --import /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL && \
   yum install -y \
      make \
      glibc-devel \
